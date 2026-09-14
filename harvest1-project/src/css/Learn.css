@@ -1,0 +1,444 @@
+/* =========================
+   Global Styles
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.learn-page {
+  min-height: 100vh;
+  padding: 70px 0 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(133, 209, 139, 0.2),
+      transparent 32%
+    ),
+    linear-gradient(135deg, #f7fcf7 0%, #edf7ee 100%);
+}
+
+/* =========================
+   Header
+========================= */
+
+.learn-header {
+  position: relative;
+  margin-bottom: 50px;
+  padding: 45px 25px;
+  overflow: hidden;
+  border-radius: 28px;
+  color: white;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(26, 92, 42, 0.94),
+      rgba(94, 157, 87, 0.88)
+    ),
+    url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1600&q=85')
+      center / cover;
+  box-shadow: 0 18px 40px rgba(42, 100, 49, 0.2);
+  animation: headerAppear 0.8s ease-out;
+}
+
+.learn-header::before,
+.learn-header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.13);
+  pointer-events: none;
+}
+
+.learn-header::before {
+  width: 230px;
+  height: 230px;
+  top: -130px;
+  right: 5%;
+  animation: floatingShape 5s ease-in-out infinite;
+}
+
+.learn-header::after {
+  width: 150px;
+  height: 150px;
+  bottom: -85px;
+  left: 8%;
+  animation: floatingShape 6s ease-in-out infinite reverse;
+}
+
+.learn-header h1,
+.learn-header h6 {
+  position: relative;
+  z-index: 1;
+}
+
+.learn-header h1 {
+  margin-bottom: 10px;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 1px;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  animation: titleAnimation 2.5s ease-in-out infinite;
+}
+
+.learn-header h6 {
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+/* =========================
+   Grid
+========================= */
+
+.learn-page .MuiGrid-container {
+  align-items: stretch;
+}
+
+/* =========================
+   Topic Card
+========================= */
+
+.topic-card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(75, 139, 81, 0.14);
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 22px rgba(51, 96, 57, 0.1);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  animation: cardAppear 0.7s ease both;
+}
+
+.topic-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(46, 125, 50, 0.4);
+  box-shadow: 0 20px 38px rgba(45, 105, 53, 0.2);
+}
+
+.topic-card::after {
+  content: '';
+  position: absolute;
+  right: -45px;
+  bottom: -45px;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: rgba(112, 184, 108, 0.1);
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+
+.topic-card:hover::after {
+  transform: scale(1.6);
+}
+
+.topic-card:nth-of-type(2) {
+  animation-delay: 0.08s;
+}
+
+.topic-card:nth-of-type(3) {
+  animation-delay: 0.16s;
+}
+
+.topic-card:nth-of-type(4) {
+  animation-delay: 0.24s;
+}
+
+.topic-card:nth-of-type(5) {
+  animation-delay: 0.32s;
+}
+
+.topic-card:nth-of-type(6) {
+  animation-delay: 0.4s;
+}
+
+/* =========================
+   Card Image
+========================= */
+
+.topic-card .MuiCardMedia-root {
+  height: 220px;
+  object-fit: cover;
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.topic-card:hover .MuiCardMedia-root {
+  transform: scale(1.08);
+  filter: brightness(0.85);
+}
+
+/* Image Overlay Effect */
+
+.topic-card .MuiCardMedia-root {
+  position: relative;
+}
+
+/* =========================
+   Card Content
+========================= */
+
+.topic-card .MuiCardContent-root {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 23px;
+}
+
+.topic-card .MuiChip-root {
+  margin-bottom: 15px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.topic-card h2 {
+  min-height: 58px;
+  margin-bottom: 10px;
+  color: #214d2a;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.topic-card .MuiTypography-body2 {
+  min-height: 48px;
+  color: #68766b;
+  line-height: 1.7;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.topic-card .MuiStack-root {
+  position: relative;
+  z-index: 2;
+}
+
+.topic-card .MuiButton-root {
+  min-height: 45px;
+  border-radius: 13px;
+  font-weight: 700;
+  text-transform: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.topic-card .MuiButton-contained {
+  box-shadow: 0 6px 14px rgba(46, 125, 50, 0.22);
+}
+
+.topic-card .MuiButton-contained:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+}
+
+.topic-card .MuiButton-outlined:hover {
+  transform: translateY(-2px);
+  background-color: rgba(46, 125, 50, 0.06);
+}
+
+/* =========================
+   Dialog
+========================= */
+
+.MuiDialog-paper {
+  border-radius: 24px !important;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, #ffffff 0%, #f3faf3 100%);
+  box-shadow: 0 24px 70px rgba(28, 74, 35, 0.3) !important;
+}
+
+.MuiDialogTitle-root {
+  padding: 25px 28px 18px !important;
+  color: #24552c;
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+}
+
+.MuiDialogContent-root {
+  padding: 20px 28px !important;
+  border-top: 1px solid #e4efe5;
+  border-bottom: 1px solid #e4efe5;
+}
+
+.MuiDialogContent-root .MuiTypography-root {
+  color: #5d6d61;
+  line-height: 1.9;
+}
+
+.MuiDialogActions-root {
+  padding: 16px 25px !important;
+  gap: 8px;
+}
+
+.MuiDialogActions-root .MuiButton-root {
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: none;
+}
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes headerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatingShape {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(22px) rotate(12deg);
+  }
+}
+
+@keyframes titleAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+  .learn-page {
+    padding-top: 45px;
+  }
+
+  .learn-header {
+    padding: 38px 20px;
+    margin-bottom: 38px;
+  }
+
+  .topic-card .MuiCardMedia-root {
+    height: 210px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .learn-page {
+    padding: 25px 0 55px;
+  }
+
+  .learn-header {
+    margin-right: 12px;
+    margin-bottom: 32px;
+    margin-left: 12px;
+    padding: 35px 18px;
+    border-radius: 20px;
+  }
+
+  .learn-header h1 {
+    font-size: 2.6rem;
+  }
+
+  .learn-header h6 {
+    font-size: 1rem;
+  }
+
+  .topic-card {
+    border-radius: 18px !important;
+  }
+
+  .topic-card .MuiCardMedia-root {
+    height: 205px;
+  }
+
+  .topic-card .MuiCardContent-root {
+    padding: 20px;
+  }
+
+  .topic-card h2 {
+    min-height: auto;
+    font-size: 1.2rem;
+  }
+
+  .topic-card .MuiTypography-body2 {
+    min-height: auto;
+  }
+
+  .MuiDialog-paper {
+    margin: 15px !important;
+    border-radius: 18px !important;
+  }
+
+  .MuiDialogTitle-root {
+    padding: 20px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .MuiDialogContent-root {
+    padding: 18px 20px !important;
+  }
+
+  .MuiDialogActions-root {
+    flex-direction: column-reverse;
+    align-items: stretch !important;
+    padding: 14px 20px 20px !important;
+  }
+
+  .MuiDialogActions-root .MuiButton-root {
+    width: 100%;
+  }
+}
+
+/* =========================
+   Reduced Motion
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,322 @@
+/* =========================
+   Global
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.food-rescue {
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(126, 201, 131, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #f7fcf7 0%, #edf7ee 100%);
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero-section {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(21, 77, 35, 0.92),
+      rgba(93, 161, 87, 0.78)
+    ),
+    url('https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=85')
+      center / cover;
+  box-shadow: 0 12px 30px rgba(38, 92, 45, 0.2);
+}
+
+.hero-section::before,
+.hero-section::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.hero-section::before {
+  width: 280px;
+  height: 280px;
+  top: -130px;
+  right: 8%;
+  animation: floatShape 5s ease-in-out infinite;
+}
+
+.hero-section::after {
+  width: 180px;
+  height: 180px;
+  bottom: -90px;
+  left: 10%;
+  animation: floatShape 6s ease-in-out infinite reverse;
+}
+
+.hero-section h1,
+.hero-section p {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+  animation: heroAppear 0.9s ease-out;
+}
+
+.hero-section p {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================
+   Crops Section
+========================= */
+
+.crops-section {
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 80px 28px 100px;
+}
+
+.crops-section h2 {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto 45px;
+  color: #24562c;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.crops-section h2::after {
+  content: '';
+  position: absolute;
+  right: 50%;
+  bottom: -14px;
+  width: 75px;
+  height: 4px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2e7d32, #9ccc65);
+  transform: translateX(50%);
+}
+
+.crops-grid-wrapper {
+  width: 100%;
+}
+
+.crops-grid {
+  align-items: stretch;
+}
+
+.crop-grid-item {
+  display: flex !important;
+}
+
+/* =========================
+   Cards
+========================= */
+
+.crop-card {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(65, 130, 72, 0.15);
+  border-radius: 20px !important;
+  background-color: #ffffff;
+  box-shadow: 0 8px 22px rgba(48, 101, 53, 0.1);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.crop-card:hover {
+  transform: translateY(-9px);
+  border-color: rgba(46, 125, 50, 0.45);
+  box-shadow: 0 20px 40px rgba(41, 100, 49, 0.2);
+}
+
+/* Images */
+
+.crop-image {
+  width: 100%;
+  height: 215px !important;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.crop-card:hover .crop-image {
+  transform: scale(1.08);
+  filter: brightness(0.86);
+}
+
+/* Content */
+
+.crop-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 22px !important;
+}
+
+.crop-title {
+  min-height: 56px;
+  margin-bottom: 12px !important;
+  color: #24562c;
+  font-size: 1.18rem !important;
+  font-weight: 800 !important;
+  line-height: 1.4 !important;
+}
+
+.crop-description {
+  flex: 1;
+  min-height: 125px;
+  margin-bottom: 20px !important;
+  color: #667469;
+  font-size: 0.94rem !important;
+  line-height: 1.75 !important;
+}
+
+.water-chip {
+  align-self: flex-start;
+  margin-top: auto !important;
+  font-weight: 700 !important;
+}
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes heroAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatShape {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(22px) rotate(12deg);
+  }
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+  .hero-section {
+    min-height: 390px;
+  }
+
+  .crops-section {
+    padding: 65px 22px 85px;
+  }
+
+  .crop-card {
+    min-height: 450px;
+  }
+
+  .crop-image {
+    height: 205px !important;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .hero-section {
+    min-height: 350px;
+    padding: 50px 20px;
+  }
+
+  .hero-section h1 {
+    font-size: 2.7rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .crops-section {
+    padding: 55px 16px 70px;
+  }
+
+  .crops-section h2 {
+    margin-bottom: 35px;
+    font-size: 2.2rem;
+  }
+
+  .crop-card {
+    min-height: auto;
+    border-radius: 17px !important;
+  }
+
+  .crop-image {
+    height: 220px !important;
+  }
+
+  .crop-title {
+    min-height: auto;
+  }
+
+  .crop-description {
+    min-height: auto;
+  }
+}
+
+/* =========================
+   Reduced Motion
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
+.smart-farming-page {
+  min-height: 100vh;
+  padding-bottom: 60px;
+  background: #f5f8f5;
+}
+
+/* Welcome Section */
+
+.welcome-section {
+  position: relative;
+  min-height: 440px;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      rgba(20, 70, 35, 0.58),
+      rgba(20, 70, 35, 0.58)
+    ),
+    url('https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=85');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  top: -100px;
+  right: 8%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  animation: floatCircle 5s ease-in-out infinite;
+}
+
+.welcome-section::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  bottom: -80px;
+  left: 10%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: floatCircle 6s ease-in-out infinite reverse;
+}
+
+.welcome-overlay {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  padding: 30px 20px;
+  color: white;
+  text-align: center;
+  animation: fadeUp 1s ease-out;
+}
+
+.welcome-title {
+  margin-bottom: 20px !important;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+.welcome-subtitle {
+  margin-bottom: 30px !important;
+  line-height: 1.6 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.welcome-button {
+  padding: 12px 28px !important;
+  border-radius: 30px !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+.welcome-button:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Header */
+
+.smart-farming-header {
+  margin-bottom: 40px;
+  animation: fadeUp 0.9s ease-out;
+}
+
+/* Plant Cards */
+
+.plant-card {
+  height: 100%;
+  border-radius: 18px !important;
+  overflow: hidden;
+  background: #ffffff;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  animation: cardAppear 0.8s ease both;
+}
+
+.plant-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(45, 90, 50, 0.2);
+}
+
+.plant-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.plant-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.moisture-progress {
+  height: 10px !important;
+  border-radius: 10px;
+  background-color: #e0e0e0 !important;
+}
+
+.plant-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px;
+  border-left: 4px solid #66bb6a;
+  border-radius: 10px;
+  background: #f1f8f2;
+}
+
+.water-advice {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #eef7ee;
+  transition: background-color 0.3s ease;
+}
+
+.water-advice:hover {
+  background: #e1f1e3;
+}
+
+/* Animations */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatCircle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(25px) rotate(15deg);
+  }
+}
+
+@keyframes titlePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .welcome-section {
+    min-height: 400px;
+    background-attachment: scroll;
+  }
+
+  .welcome-title {
+    font-size: 2.8rem !important;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .welcome-section {
+    min-height: 390px;
+    margin-bottom: 45px;
+  }
+
+  .welcome-title {
+    font-size: 2.1rem !important;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .smart-farming-header h2 {
+    font-size: 2rem;
+  }
+
+  .plant-card {
+    border-radius: 14px !important;
+  }
+}

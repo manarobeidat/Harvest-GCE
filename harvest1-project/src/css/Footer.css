@@ -1,0 +1,16 @@
+.footer {
+  margin-top: 60px;
+  padding: 40px 0 20px;
+  background-color: #f5f8f5;
+  border-top: 1px solid #dce5dc;
+}
+
+.footer a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #2e7d32;
+}
