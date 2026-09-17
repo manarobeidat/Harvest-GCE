@@ -1,0 +1,557 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-green: #173d24;
+  --forest-green: #245c32;
+  --main-green: #2e7d32;
+  --light-green: #8fca78;
+  --soft-green: #eef8ed;
+  --text-light: #69766c;
+  --border-green: #dcebdd;
+}
+
+body {
+  margin: 0;
+  font-family: 'Cairo', Arial, sans-serif;
+  background: var(--soft-green);
+}
+
+.practical-learning-page {
+  min-height: 100vh;
+  padding-bottom: 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(130, 202, 133, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #f5fbf5 0%, #eaf5eb 100%);
+}
+
+.practical-learning-page button,
+.practical-learning-page input,
+.practical-learning-page textarea {
+  font-family: 'Cairo', Arial, sans-serif;
+}
+
+/* Hero */
+
+.practical-learning-hero {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 80, 36, 0.9),
+      rgba(92, 160, 85, 0.76)
+    ),
+    url('https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=85')
+      center / cover;
+}
+
+.practical-learning-hero::before,
+.practical-learning-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.practical-learning-hero::before {
+  width: 290px;
+  height: 290px;
+  top: -140px;
+  right: 7%;
+  animation: floatShape 5s ease-in-out infinite;
+}
+
+.practical-learning-hero::after {
+  width: 190px;
+  height: 190px;
+  bottom: -95px;
+  left: 8%;
+  animation: floatShape 6s ease-in-out infinite reverse;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 75px 0;
+  animation: fadeUp 0.8s ease-out;
+}
+
+.hero-chip {
+  margin-bottom: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  font-weight: 700 !important;
+}
+
+.hero-content h1 {
+  margin-bottom: 18px;
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h6 {
+  max-width: 680px;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.8;
+}
+
+.hero-button {
+  padding: 12px 25px !important;
+  border-radius: 28px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+/* Progress */
+
+.progress-card {
+  position: relative;
+  z-index: 2;
+  margin-top: -35px;
+  margin-bottom: 30px;
+  padding: 23px;
+  border: 1px solid var(--border-green);
+  border-radius: 18px !important;
+  box-shadow: 0 12px 28px rgba(40, 91, 46, 0.12) !important;
+}
+
+.progress-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  color: var(--main-green);
+  background: #e5f4e6;
+}
+
+.progress-icon svg {
+  font-size: 33px;
+}
+
+.progress-info {
+  flex: 1;
+}
+
+.progress-info h6 {
+  color: var(--forest-green);
+}
+
+.progress-bar {
+  height: 9px !important;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #dcebdc !important;
+}
+
+.level-chip {
+  font-weight: 700 !important;
+}
+
+/* Tabs */
+
+.tabs-wrapper {
+  margin-bottom: 38px;
+  overflow: hidden;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 18px rgba(40, 91, 46, 0.08) !important;
+}
+
+.tabs-wrapper .MuiTab-root {
+  min-height: 68px;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.tab-content {
+  min-height: 450px;
+  animation: fadeUp 0.5s ease-out;
+}
+
+/* Section Header */
+
+.section-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.section-header h2 {
+  margin-bottom: 10px;
+  color: var(--forest-green);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+}
+
+.section-header p {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* General Cards */
+
+.lesson-card,
+.challenge-card,
+.greenhouse-feature-card,
+.success-story-card {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border-green) !important;
+  border-radius: 19px !important;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(40, 91, 46, 0.09) !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.lesson-card:hover,
+.challenge-card:hover,
+.greenhouse-feature-card:hover,
+.success-story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 34px rgba(40, 91, 46, 0.17) !important;
+}
+
+.lesson-card .MuiCardContent-root,
+.challenge-card .MuiCardContent-root,
+.greenhouse-feature-card .MuiCardContent-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.lesson-icon,
+.challenge-icon,
+.greenhouse-feature-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  color: var(--main-green);
+  background: #e8f5e9;
+}
+
+.lesson-icon svg,
+.challenge-icon svg,
+.greenhouse-feature-icon svg {
+  font-size: 30px;
+}
+
+.card-title {
+  margin: 17px 0 12px !important;
+  color: var(--forest-green);
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  line-height: 1.4 !important;
+}
+
+.card-description {
+  flex: 1;
+  margin-bottom: 18px !important;
+  color: var(--text-light);
+  line-height: 1.75 !important;
+}
+
+.card-button {
+  margin-top: 22px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+/* Experiments */
+
+.experiment-card {
+  overflow: hidden;
+  border: 1px solid var(--border-green) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 16px rgba(40, 91, 46, 0.07) !important;
+}
+
+.experiment-card::before {
+  background: var(--main-green) !important;
+}
+
+.greenhouse-experiment {
+  border-left: 5px solid #6ba868 !important;
+}
+
+.experiment-summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.experiment-summary h6 {
+  color: var(--forest-green);
+  font-weight: 800;
+}
+
+.steps-list {
+  margin: 12px 0 22px;
+  padding-left: 22px;
+}
+
+.steps-list li {
+  margin-bottom: 9px;
+  color: var(--text-light);
+}
+
+/* Form */
+
+.experiment-form {
+  padding: 30px;
+  border: 1px solid var(--border-green);
+  border-radius: 18px !important;
+  box-shadow: 0 8px 22px rgba(40, 91, 46, 0.08) !important;
+}
+
+.experiment-form .MuiTextField-root {
+  background: white;
+}
+
+.upload-button {
+  min-height: 45px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+.selected-file {
+  display: inline-block;
+  margin-left: 15px !important;
+}
+
+/* Greenhouse Intro */
+
+.greenhouse-intro {
+  margin-bottom: 35px;
+  padding: 28px;
+  border: 1px solid var(--border-green);
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236, 248, 236, 0.98),
+      rgba(255, 255, 255, 0.98)
+    );
+  box-shadow: 0 8px 22px rgba(40, 91, 46, 0.08) !important;
+}
+
+.greenhouse-intro-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  color: var(--main-green);
+  background: #dff1df;
+}
+
+.greenhouse-intro-icon svg {
+  font-size: 38px;
+}
+
+.greenhouse-features {
+  margin-bottom: 75px !important;
+}
+
+.greenhouse-feature-card .card-description {
+  flex: 1;
+  margin-top: 12px;
+}
+
+.greenhouse-feature-card .MuiChip-root {
+  align-self: flex-start;
+  margin-top: 18px;
+  font-weight: 700;
+}
+
+/* Success Stories */
+
+.success-story-card {
+  overflow: hidden;
+}
+
+.success-story-image {
+  width: 100%;
+  height: 220px;
+  display: block;
+  object-fit: cover;
+}
+
+.success-story-card .MuiCardContent-root {
+  padding: 23px;
+}
+
+.success-story-card .card-title {
+  margin: 16px 0 8px !important;
+}
+
+/* Animations */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatShape {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(22px) rotate(12deg);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .practical-learning-hero {
+    min-height: 400px;
+  }
+
+  .hero-content {
+    padding: 65px 0;
+  }
+
+  .experiment-form {
+    padding: 24px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .practical-learning-hero {
+    min-height: 430px;
+  }
+
+  .hero-content {
+    padding: 55px 0;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.7rem;
+  }
+
+  .hero-content h6 {
+    font-size: 1rem;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+
+  .progress-card {
+    margin-top: -25px;
+    padding: 18px;
+  }
+
+  .progress-info {
+    width: 100%;
+  }
+
+  .progress-icon {
+    margin: 0 auto;
+  }
+
+  .level-chip {
+    align-self: center;
+  }
+
+  .tabs-wrapper {
+    margin-top: 25px;
+  }
+
+  .tabs-wrapper .MuiTab-root {
+    min-width: 115px;
+    min-height: 65px;
+    font-size: 0.8rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.1rem;
+  }
+
+  .experiment-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .experiment-summary .MuiChip-root {
+    align-self: flex-start;
+  }
+
+  .experiment-form {
+    padding: 20px;
+  }
+
+  .selected-file {
+    display: block;
+    margin: 10px 0 0 !important;
+  }
+
+  .greenhouse-intro {
+    padding: 21px;
+    text-align: center;
+  }
+
+  .greenhouse-intro-icon {
+    margin: 0 auto;
+  }
+
+  .success-story-image {
+    height: 205px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

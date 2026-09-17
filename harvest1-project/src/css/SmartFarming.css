@@ -32,7 +32,7 @@
 .welcome-section::before {
   content: '';
   position: absolute;
-  width: 260px;
+  width: 280px;
   height: 260px;
   top: -100px;
   right: 8%;
