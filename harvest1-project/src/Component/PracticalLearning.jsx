@@ -12,6 +12,10 @@ import {
   CardContent,
   Chip,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   Grid,
   LinearProgress,
@@ -46,29 +50,131 @@ const lessons = [
   {
     id: 1,
     title: 'Water Conservation',
+    shortDescription:
+      'Learn how to save water while keeping plants healthy and productive.',
     description:
-      'Learn how drip irrigation and correct watering schedules can reduce water waste.',
+      'This lesson explains drip irrigation, soil moisture monitoring, watering schedules, and simple methods for reducing water loss.',
     duration: '20 minutes',
     level: 'Beginner',
+    audience: 'School Students and Farmers',
+    skills: [
+      'Measure the amount of water used.',
+      'Identify when a plant needs water.',
+      'Compare normal irrigation with drip irrigation.',
+      'Create a simple water-saving plan.',
+    ],
+    tools: 'Two plants, measuring cup, soil, water, ruler, and notebook.',
+    result:
+      'You will be able to choose a suitable watering method and explain how much water was saved.',
     icon: <WaterDropIcon />,
   },
   {
     id: 2,
     title: 'Soil Protection',
+    shortDescription:
+      'Understand how compost, mulch, and cover crops improve soil health.',
     description:
-      'Understand how compost, mulch, and crop cover help protect soil health.',
+      'This lesson introduces soil erosion, organic matter, compost, mulch, and cover crops. Students learn how healthy soil supports stronger plants.',
     duration: '25 minutes',
     level: 'Beginner',
+    audience: 'School Students and University Students',
+    skills: [
+      'Identify signs of unhealthy soil.',
+      'Compare covered and uncovered soil.',
+      'Use compost safely.',
+      'Explain how mulch reduces water loss.',
+    ],
+    tools: 'Two soil samples, dry leaves, compost, water, and observation sheet.',
+    result:
+      'You will understand how to protect soil from erosion and keep it fertile.',
     icon: <ScienceIcon />,
   },
   {
     id: 3,
     title: 'Seed Conservation',
+    shortDescription:
+      'Learn how to select, dry, label, and store local seeds.',
     description:
-      'Learn how to select, dry, label, and store local seeds for future planting.',
+      'This lesson shows how local seeds can be preserved for future seasons and why agricultural biodiversity is important.',
     duration: '30 minutes',
     level: 'Intermediate',
+    audience: 'Students, Teachers, and Farmers',
+    skills: [
+      'Select healthy seeds.',
+      'Dry seeds correctly.',
+      'Label seeds with useful information.',
+      'Store seeds in a safe and dry place.',
+    ],
+    tools: 'Local seeds, paper bags, labels, containers, and notebook.',
+    result:
+      'You will be able to prepare a simple seed collection for your school or farm.',
     icon: <AgricultureIcon />,
+  },
+  {
+    id: 4,
+    title: 'Greenhouse Climate Control',
+    shortDescription:
+      'Learn how temperature, humidity, light, and ventilation affect plants.',
+    description:
+      'A greenhouse is a controlled learning environment. Students learn how to observe climate conditions and make safe adjustments for plant growth.',
+    duration: '35 minutes',
+    level: 'Intermediate',
+    audience: 'University Students and Farmers',
+    skills: [
+      'Read greenhouse temperature.',
+      'Measure relative humidity.',
+      'Observe light levels.',
+      'Open vents or use fans when needed.',
+      'Record climate changes.',
+    ],
+    tools:
+      'Thermometer, humidity meter, light meter or phone sensor, notebook, and greenhouse.',
+    result:
+      'You will understand how greenhouse conditions influence plant health and growth.',
+    icon: <HomeWorkIcon />,
+  },
+  {
+    id: 5,
+    title: 'Organic Composting',
+    shortDescription:
+      'Turn organic waste into useful compost for plants.',
+    description:
+      'This lesson explains how dry leaves, vegetable leftovers, soil, air, and moisture work together to produce compost.',
+    duration: '30 minutes',
+    level: 'Beginner',
+    audience: 'School Students and Families',
+    skills: [
+      'Separate suitable organic materials.',
+      'Build compost layers.',
+      'Keep compost slightly moist.',
+      'Observe decomposition.',
+    ],
+    tools: 'Container, dry leaves, vegetable leftovers, soil, and water.',
+    result:
+      'You will be able to build a small compost container using household materials.',
+    icon: <GrassIcon />,
+  },
+  {
+    id: 6,
+    title: 'Plant Growth Measurement',
+    shortDescription:
+      'Collect data about plant height, leaves, water, and growth.',
+    description:
+      'Students learn how to observe plant development and create a simple growth report based on real measurements.',
+    duration: '14 days',
+    level: 'Intermediate',
+    audience: 'University Students and Teachers',
+    skills: [
+      'Measure plant height.',
+      'Count leaves.',
+      'Take regular photographs.',
+      'Create a simple growth table.',
+      'Compare two plants.',
+    ],
+    tools: 'Plant, ruler, camera, notebook, and measuring table.',
+    result:
+      'You will create a small report explaining how a plant changed over time.',
+    icon: <HistoryEduIcon />,
   },
 ];
 
@@ -306,6 +412,7 @@ const initialFormData = {
 
 export default function PracticalLearning() {
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedLesson, setSelectedLesson] = useState(null);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [completedChallenges, setCompletedChallenges] = useState([]);
   const [completedGreenhouseExperiments, setCompletedGreenhouseExperiments] =
@@ -504,7 +611,7 @@ export default function PracticalLearning() {
           <Box className="tab-content">
             <SectionHeader
               title="Learn the Basics"
-              description="Short lessons that prepare you for practical activities."
+              description="Build your agricultural knowledge before starting a practical activity."
             />
 
             <Grid container spacing={3}>
@@ -522,12 +629,27 @@ export default function PracticalLearning() {
                           {lesson.icon}
                         </Box>
 
-                        <Chip
-                          label={lesson.level}
-                          size="small"
-                          color="success"
-                          variant="outlined"
-                        />
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          flexWrap="wrap"
+                          useFlexGap
+                          className="lesson-chips"
+                        >
+                          <Chip
+                            label={lesson.level}
+                            size="small"
+                            color="success"
+                            variant="outlined"
+                          />
+
+                          <Chip
+                            label={lesson.duration}
+                            size="small"
+                            color="info"
+                            variant="outlined"
+                          />
+                        </Stack>
 
                         <Typography
                           variant="h5"
@@ -538,31 +660,42 @@ export default function PracticalLearning() {
 
                         <Typography
                           variant="body2"
-                          color="text.secondary"
                           className="card-description"
                         >
-                          {lesson.description}
+                          {lesson.shortDescription}
                         </Typography>
 
                         <Typography
                           variant="body2"
-                          color="text.secondary"
+                          className="lesson-audience"
                         >
-                          Duration: {lesson.duration}
+                          <strong>For:</strong> {lesson.audience}
                         </Typography>
 
-                        <Button
-                          fullWidth
-                          variant={
-                            isCompleted ? 'outlined' : 'contained'
-                          }
-                          color="success"
-                          startIcon={<AddTaskIcon />}
-                          onClick={() => completeLesson(lesson.id)}
-                          className="card-button"
-                        >
-                          {isCompleted ? 'Completed' : 'Complete Lesson'}
-                        </Button>
+                        <Stack spacing={1} className="card-actions">
+                          <Button
+                            fullWidth
+                            variant="outlined"
+                            color="success"
+                            onClick={() => setSelectedLesson(lesson)}
+                          >
+                            View Lesson Details
+                          </Button>
+
+                          <Button
+                            fullWidth
+                            variant={
+                              isCompleted ? 'outlined' : 'contained'
+                            }
+                            color="success"
+                            startIcon={<AddTaskIcon />}
+                            onClick={() => completeLesson(lesson.id)}
+                          >
+                            {isCompleted
+                              ? 'Completed'
+                              : 'Complete Lesson'}
+                          </Button>
+                        </Stack>
                       </CardContent>
                     </Card>
                   </Grid>
@@ -700,15 +833,12 @@ export default function PracticalLearning() {
                     <MenuItem value="School Student">
                       School Student
                     </MenuItem>
-
                     <MenuItem value="University Student">
                       University Student
                     </MenuItem>
-
                     <MenuItem value="Farmer">
                       Farmer
                     </MenuItem>
-
                     <MenuItem value="Teacher">
                       Teacher
                     </MenuItem>
@@ -984,8 +1114,7 @@ export default function PracticalLearning() {
                             variant="body2"
                             color="text.secondary"
                           >
-                            {experiment.audience} •{' '}
-                            {experiment.duration}
+                            {experiment.audience} • {experiment.duration}
                           </Typography>
                         </Box>
 
@@ -1191,6 +1320,117 @@ export default function PracticalLearning() {
           </Box>
         )}
       </Container>
+
+      <Dialog
+        open={Boolean(selectedLesson)}
+        onClose={() => setSelectedLesson(null)}
+        fullWidth
+        maxWidth="md"
+      >
+        {selectedLesson && (
+          <>
+            <DialogTitle className="lesson-dialog-title">
+              {selectedLesson.title}
+            </DialogTitle>
+
+            <DialogContent dividers>
+              <Stack spacing={2.5}>
+                <Typography
+                  variant="body1"
+                  className="lesson-dialog-description"
+                >
+                  {selectedLesson.description}
+                </Typography>
+
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={1}
+                >
+                  <Chip
+                    label={`Level: ${selectedLesson.level}`}
+                    color="success"
+                  />
+
+                  <Chip
+                    label={`Duration: ${selectedLesson.duration}`}
+                    color="info"
+                  />
+
+                  <Chip
+                    label={selectedLesson.audience}
+                    color="warning"
+                  />
+                </Stack>
+
+                <Box>
+                  <Typography
+                    variant="h6"
+                    className="dialog-section-title"
+                  >
+                    Skills You Will Learn
+                  </Typography>
+
+                  <Box component="ul" className="lesson-list">
+                    {selectedLesson.skills.map((skill) => (
+                      <li key={skill}>
+                        <Typography variant="body2">
+                          {skill}
+                        </Typography>
+                      </li>
+                    ))}
+                  </Box>
+                </Box>
+
+                <Box>
+                  <Typography
+                    variant="h6"
+                    className="dialog-section-title"
+                  >
+                    Required Tools
+                  </Typography>
+
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {selectedLesson.tools}
+                  </Typography>
+                </Box>
+
+                <Box className="lesson-result-box">
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    Expected Result
+                  </Typography>
+
+                  <Typography variant="body2">
+                    {selectedLesson.result}
+                  </Typography>
+                </Box>
+              </Stack>
+            </DialogContent>
+
+            <DialogActions>
+              <Button
+                onClick={() => setSelectedLesson(null)}
+                color="inherit"
+              >
+                Close
+              </Button>
+
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => {
+                  completeLesson(selectedLesson.id);
+                  setSelectedLesson(null);
+                }}
+              >
+                Complete Lesson
+              </Button>
+            </DialogActions>
+          </>
+        )}
+      </Dialog>
 
       <Snackbar
         open={snackbarOpen}
